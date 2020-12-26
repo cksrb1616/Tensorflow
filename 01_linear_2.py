@@ -15,7 +15,7 @@ H = linear(x_data)
 
 cost = tf.reduce_mean(tf.square(H-Y)) # reduce_mean : finding average
 a = tf.Variable(0.01)
-optimizer = tf.train.GradientDescentOptimizer(a) # GradientDescent algorithm 경사하강
+optimizer = tf.keras.optimizers.SGD(a) # GradientDescent algorithm 경사하강
 train = optimizer.minimize(cost)
 
 for i in range(5001):
