@@ -10,6 +10,7 @@ b = tf.Variable(tf.random.uniform([1],-100,100))
 def linear(x):
     return w*x + b
 
+###########################################################
 H = linear(x_data)
 
 cost = tf.reduce_mean(tf.square(H-Y)) # reduce_mean : finding average
