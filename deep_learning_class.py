@@ -13,7 +13,7 @@ print(ind.shape, dep.shape)
 X = tf.keras.layers.Input(shape=[4])
 H = tf.keras.layers.Dense(8, activation="swish")(X)
 H = tf.keras.layers.Dense(8, activation="swish")(H)
-H = tf.keras.layers.Dense(8, activation="swish")(H) # 히든 레이어가 3개인 모델 8대신 몇몇 히든은 숫자가 달라도 됨
+H = tf.keras.layers.Dense(8, activation="swish")(H) # 히든 레이어가 3개인 모델. 8대신 몇몇 히든은 숫자가 달라도 됨
 Y = tf.keras.layers.Dense(3, activation='softmax')(H)
 model = tf.keras.models.Model(X, Y)
 model.compile(loss='categorical_crossentropy',
