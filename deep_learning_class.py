@@ -9,15 +9,38 @@ iris = pd.get_dummies(iris)
 ind = iris[['꽃잎길이', '꽃잎폭', '꽃받침길이', '꽃받침폭']]
 dep = iris[['품종_setosa', '품종_versicolor', '품종_virginica']]
 print(ind.shape, dep.shape)
+
 # 2. 모델의 구조를 만듭니다
+# X = tf.keras.layers.Input(shape=[4])
+# H = tf.keras.layers.Dense(8, activation="swish")(X)
+# H = tf.keras.layers.Dense(8, activation="swish")(H)
+# H = tf.keras.layers.Dense(8, activation="swish")(H) # 히든 레이어가 3개인 모델. 8대신 몇몇 히든은 숫자가 달라도 됨
+# Y = tf.keras.layers.Dense(3, activation='softmax')(H)
+# model = tf.keras.models.Model(X, Y)
+# model.compile(loss='categorical_crossentropy',
+#               metrics='accuracy')
+
+# 2. 모델의 구조를 BatchNormalization layer를 사용하여 만든다.
+# faster to drop the loss
 X = tf.keras.layers.Input(shape=[4])
-H = tf.keras.layers.Dense(8, activation="swish")(X)
-H = tf.keras.layers.Dense(8, activation="swish")(H)
-H = tf.keras.layers.Dense(8, activation="swish")(H) # 히든 레이어가 3개인 모델. 8대신 몇몇 히든은 숫자가 달라도 됨
+
+H = tf.keras.layers.Dense(8)(X)
+H = tf.keras.layers.BatchNormalization()(H)
+H = tf.keras.layers.Activation('swish')(H)
+
+H = tf.keras.layers.Dense(8)(H)
+H = tf.keras.layers.BatchNormalization()(H)
+H = tf.keras.layers.Activation('swish')(H)
+
+H = tf.keras.layers.Dense(8)(H)
+H = tf.keras.layers.BatchNormalization()(H)
+H = tf.keras.layers.Activation('swish')(H)
+
 Y = tf.keras.layers.Dense(3, activation='softmax')(H)
 model = tf.keras.models.Model(X, Y)
 model.compile(loss='categorical_crossentropy',
               metrics='accuracy')
+
 # 모델 구조 확인
 #model.summary()
 # 3.데이터로 모델을 학습(FIT)합니다.

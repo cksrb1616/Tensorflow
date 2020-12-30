@@ -17,9 +17,29 @@ print(ind.shape, dep.shape)
 # 쉽게 이해할 수 있는 개념인 회귀분석의 상위호환격 방법이라고 생각하면 된다.
 
 # 2. 모델의 구조를 만듭니다
+# X = tf.keras.layers.Input(shape=[13])
+# H = tf.keras.layers.Dense(10, activation='swish')(X) # activation ='swish'
+# Y = tf.keras.layers.Dense(1)(H) # 히든을 넣어야 함
+# model = tf.keras.models.Model(X, Y)
+# model.compile(loss='mse')
+
+# 2. 모델의 구조를 BatchNormalization layer를 사용하여 만든다.
+# faster drop in loss
 X = tf.keras.layers.Input(shape=[13])
-H = tf.keras.layers.Dense(10, activation='swish')(X) # activation ='swish'
-Y = tf.keras.layers.Dense(1)(H) # 히든을 넣어야 함
+
+H = tf.keras.layers.Dense(8)(X)
+H = tf.keras.layers.BatchNormalization()(H)
+H = tf.keras.layers.Activation('swish')(H)
+
+H = tf.keras.layers.Dense(8)(H)
+H = tf.keras.layers.BatchNormalization()(H)
+H = tf.keras.layers.Activation('swish')(H)
+
+H = tf.keras.layers.Dense(8)(H)
+H = tf.keras.layers.BatchNormalization()(H)
+H = tf.keras.layers.Activation('swish')(H)
+
+Y = tf.keras.layers.Dense(1)(H)
 model = tf.keras.models.Model(X, Y)
 model.compile(loss='mse')
 

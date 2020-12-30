@@ -5,7 +5,17 @@ import pandas as pd
 # 1.과거의 데이터를 준비합니다.
 dir = 'https://raw.githubusercontent.com/blackdew/tensorflow1/master/csv/iris.csv'
 iris = pd.read_csv(dir)
+########################################
+# print(iris.dtypes)
+# # 품종을 범주형으로 바꿔주는 방법
+# iris['품종'] = iris['품종'].astype('category')
+# print(iris.dtypes)
 
+# treating NA
+# mean = iris['꽃잎폭'].mean()
+# iris['꽃잎폭'].fillna(mean)
+
+########################################
 # 원핫인코딩
 # dependent variable 이 범주형이기 때문에 이를 서로다른 컬럼을 만들어 해당할 때 1 아닐 때 0을 기입한 columns로 변환할 필요가 있음.
 # 이를 원 핫 인코딩 이라고 함.
