@@ -43,7 +43,7 @@ model.compile(loss='categorical_crossentropy', metrics='accuracy')
 ###########################
 # 모델을 학습하고
 model.fit(독립, 종속, epochs=10)
-# 표를 활용한 Flatten 보다 더 정확도가 높음 parameter 가 늘어남에 따라 느려지긴 함 
+# 표를 활용한 Flatten 보다 더 정확도가 높음 parameter 가 늘어남에 따라 느려지긴 함
 
 ###########################
 # 모델을 이용합니다.
